@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Special+Elite&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <main class="display-grid-container">
+      <section id="controls">
+        <h2>Monster Mayhem<span id="current-player">""</span></h2>
+        <p>Select a monster to place on the board game.</p>
+        <div>
+          <button
+            class="monster-btn"
+            id="vampire"
+            onclick="selectMonster('vampire')"
+          >
+            <img alt="button" src="images/vampire.png" />
+          </button>
+          <button class="monster-btn" onclick="selectMonster('werewolf')">
+            <img alt="werewolf" src="images/werewolf.png" />
+          </button>
+          <button class="monster-btn" onclick="selectMonster('ghost')">
+            <img alt="werewolf" src="images/ghost.png" />
+          </button>
+        </div>
+        <p>Selected Monster: <span id="selected-monster">None</span></p>
+      </section>
+
+      <section class="players-info">
+        <h2>Player Monster Counts</h2>
+        <div id="dev-ui">
+          <p>Current Player: <span id="player-label">1</span></p>
+          <div>
+            <button id="submit-turn" onclick="submitTurn()">Submit Turn</button>
+          </div>
+        </div>
+        <div class="player-container one">
+          <h3>Player 1 - Top Side Board Game</h3>
+          <p>Total monsters eliminated: <span id="player1-deaths">0</span></p>
+        </div>
+        <div class="player-container two">
+          <h3>Player 2 - Right Side Board Game</h3>
+          <p>Total monsters eliminated: <span id="player2-deaths">0</span></p>
+        </div>
+        <div class="player-container three">
+          <h3>Player 3 - Bottom Side Board Game</h3>
+          <p>Total monsters eliminated: <span id="player3-deaths">0</span></p>
+        </div>
+        <div class="player-container four">
+          <h3>Player 4 - Left Side Board Game</h3>
+          <p>Total monsters eliminated: <span id="player4-deaths">0</span></p>
+        </div>
+      </section>
+
+      <section class="board-section">
+        <div id="game-board">
+          <!-- 10x10 Grid Cells -->
+          <!-- Each cell marked with x/y  -->
+          <!-- Row y = 0 -->
+          <div class="cell" data-x="0" data-y="0"></div>
+          <div class="cell" data-x="1" data-y="0"></div>
+          <div class="cell" data-x="2" data-y="0"></div>
+          <div class="cell" data-x="3" data-y="0"></div>
+          <div class="cell" data-x="4" data-y="0"></div>
+          <div class="cell" data-x="5" data-y="0"></div>
+          <div class="cell" data-x="6" data-y="0"></div>
+          <div class="cell" data-x="7" data-y="0"></div>
+          <div class="cell" data-x="8" data-y="0"></div>
+          <div class="cell" data-x="9" data-y="0"></div>
+
+          <!-- Row y = 1 -->
+          <div class="cell" data-x="0" data-y="1"></div>
+          <div class="cell" data-x="1" data-y="1"></div>
+          <div class="cell" data-x="2" data-y="1"></div>
+          <div class="cell" data-x="3" data-y="1"></div>
+          <div class="cell" data-x="4" data-y="1"></div>
+          <div class="cell" data-x="5" data-y="1"></div>
+          <div class="cell" data-x="6" data-y="1"></div>
+          <div class="cell" data-x="7" data-y="1"></div>
+          <div class="cell" data-x="8" data-y="1"></div>
+          <div class="cell" data-x="9" data-y="1"></div>
+
+          <!-- Row y = 2 -->
+          <div class="cell" data-x="0" data-y="2"></div>
+          <div class="cell" data-x="1" data-y="2"></div>
+          <div class="cell" data-x="2" data-y="2"></div>
+          <div class="cell" data-x="3" data-y="2"></div>
+          <div class="cell" data-x="4" data-y="2"></div>
+          <div class="cell" data-x="5" data-y="2"></div>
+          <div class="cell" data-x="6" data-y="2"></div>
+          <div class="cell" data-x="7" data-y="2"></div>
+          <div class="cell" data-x="8" data-y="2"></div>
+          <div class="cell" data-x="9" data-y="2"></div>
+
+          <!-- Row y = 3 -->
+          <div class="cell" data-x="0" data-y="3"></div>
+          <div class="cell" data-x="1" data-y="3"></div>
+          <div class="cell" data-x="2" data-y="3"></div>
+          <div class="cell" data-x="3" data-y="3"></div>
+          <div class="cell" data-x="4" data-y="3"></div>
+          <div class="cell" data-x="5" data-y="3"></div>
+          <div class="cell" data-x="6" data-y="3"></div>
+          <div class="cell" data-x="7" data-y="3"></div>
+          <div class="cell" data-x="8" data-y="3"></div>
+          <div class="cell" data-x="9" data-y="3"></div>
+
+          <!-- Row y = 4 -->
+          <div class="cell" data-x="0" data-y="4"></div>
+          <div class="cell" data-x="1" data-y="4"></div>
+          <div class="cell" data-x="2" data-y="4"></div>
+          <div class="cell" data-x="3" data-y="4"></div>
+          <div class="cell" data-x="4" data-y="4"></div>
+          <div class="cell" data-x="5" data-y="4"></div>
+          <div class="cell" data-x="6" data-y="4"></div>
+          <div class="cell" data-x="7" data-y="4"></div>
+          <div class="cell" data-x="8" data-y="4"></div>
+          <div class="cell" data-x="9" data-y="4"></div>
+
+          <!-- Row y = 5 -->
+          <div class="cell" data-x="0" data-y="5"></div>
+          <div class="cell" data-x="1" data-y="5"></div>
+          <div class="cell" data-x="2" data-y="5"></div>
+          <div class="cell" data-x="3" data-y="5"></div>
+          <div class="cell" data-x="4" data-y="5"></div>
+          <div class="cell" data-x="5" data-y="5"></div>
+          <div class="cell" data-x="6" data-y="5"></div>
+          <div class="cell" data-x="7" data-y="5"></div>
+          <div class="cell" data-x="8" data-y="5"></div>
+          <div class="cell" data-x="9" data-y="5"></div>
+
+          <!-- Row y = 6 -->
+          <div class="cell" data-x="0" data-y="6"></div>
+          <div class="cell" data-x="1" data-y="6"></div>
+          <div class="cell" data-x="2" data-y="6"></div>
+          <div class="cell" data-x="3" data-y="6"></div>
+          <div class="cell" data-x="4" data-y="6"></div>
+          <div class="cell" data-x="5" data-y="6"></div>
+          <div class="cell" data-x="6" data-y="6"></div>
+          <div class="cell" data-x="7" data-y="6"></div>
+          <div class="cell" data-x="8" data-y="6"></div>
+          <div class="cell" data-x="9" data-y="6"></div>
+
+          <!-- Row y = 7 -->
+          <div class="cell" data-x="0" data-y="7"></div>
+          <div class="cell" data-x="1" data-y="7"></div>
+          <div class="cell" data-x="2" data-y="7"></div>
+          <div class="cell" data-x="3" data-y="7"></div>
+          <div class="cell" data-x="4" data-y="7"></div>
+          <div class="cell" data-x="5" data-y="7"></div>
+          <div class="cell" data-x="6" data-y="7"></div>
+          <div class="cell" data-x="7" data-y="7"></div>
+          <div class="cell" data-x="8" data-y="7"></div>
+          <div class="cell" data-x="9" data-y="7"></div>
+
+          <!-- Row y = 8 -->
+          <div class="cell" data-x="0" data-y="8"></div>
+          <div class="cell" data-x="1" data-y="8"></div>
+          <div class="cell" data-x="2" data-y="8"></div>
+          <div class="cell" data-x="3" data-y="8"></div>
+          <div class="cell" data-x="4" data-y="8"></div>
+          <div class="cell" data-x="5" data-y="8"></div>
+          <div class="cell" data-x="6" data-y="8"></div>
+          <div class="cell" data-x="7" data-y="8"></div>
+          <div class="cell" data-x="8" data-y="8"></div>
+          <div class="cell" data-x="9" data-y="8"></div>
+
+          <!-- Row y = 9 -->
+          <div class="cell" data-x="0" data-y="9"></div>
+          <div class="cell" data-x="1" data-y="9"></div>
+          <div class="cell" data-x="2" data-y="9"></div>
+          <div class="cell" data-x="3" data-y="9"></div>
+          <div class="cell" data-x="4" data-y="9"></div>
+          <div class="cell" data-x="5" data-y="9"></div>
+          <div class="cell" data-x="6" data-y="9"></div>
+          <div class="cell" data-x="7" data-y="9"></div>
+          <div class="cell" data-x="8" data-y="9"></div>
+          <div class="cell" data-x="9" data-y="9"></div>
+        </div>
+      </section>
+    </main>
+  </body>
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    const socket = io();
+  </script>
+  <script src="script.js"></script>
+</html>

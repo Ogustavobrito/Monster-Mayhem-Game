@@ -1,0 +1,217 @@
+/* Reset default styling */
+*,
+::after,
+::before {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Special Elite', system-ui;
+  background-color: #070f2b;
+  min-height: 100vh;
+}
+
+/* Style for display grid of board game, info-players and controls */
+.display-grid-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  padding: 1rem;
+  height: 100vh;
+}
+#controls {
+  grid-column: 1 / 3;
+  grid-row: 1 / 2;
+}
+.players-info {
+  grid-column: 3 / 4;
+  grid-row: 1 / 4;
+}
+.board-section {
+  grid-column: 1 / 3;
+  grid-row: 2 / 4;
+}
+
+/* BOARD GAME STYLE  */
+#game-board {
+  display: grid;
+  grid-template-columns: repeat(10, 50px);
+  grid-template-rows: repeat(10, 50px);
+  margin: 20px auto;
+  width: max-content;
+}
+
+.cell {
+  width: 50px;
+  height: 50px;
+  background-color: #f3f2f29f;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+/* style for hovering on cells */
+.cell:hover {
+  background-color: #22446b;
+  cursor: pointer;
+}
+
+/* Toggled color class */
+.cell.active {
+  background-color: white; /* New color when toggled */
+}
+
+/* Style fot title/player's turn */
+#controls {
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+}
+
+#controls h2 {
+  color: rgb(255, 112, 51);
+  margin-bottom: 8px;
+  font-size: 2rem;
+}
+#controls p {
+  color: aliceblue;
+  font-weight: 200;
+  letter-spacing: 1px;
+  margin-bottom: 8px;
+  font-size: 1.2rem;
+}
+
+/* Style for monsters buttons */
+.monster-btn img {
+  width: 100px;
+}
+.monster-btn {
+  transition: transform 0.4s ease;
+  background-color: transparent;
+  border: none;
+  margin: 7px;
+}
+.monster-btn:hover {
+  scale: 1;
+  transform: scale(1.2);
+  cursor: pointer;
+}
+.vampire {
+  background-image: url(images/vampire.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.werewolf {
+  background-image: url(images/werewolf.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.ghost {
+  background-image: url(images/ghost.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+/* style for selected hex cell */
+.selected {
+  background-color: rgba(255, 255, 255, 0.611);
+}
+.highlight {
+  background-color: #065b6e9a; /* different color for valid moves */
+  cursor: pointer;
+}
+
+/* Style for players information section */
+.players-info {
+  padding: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: left;
+  margin-bottom: 1rem;
+}
+.player-container {
+  border: 1px solid #f3f2f29f;
+  border-radius: 5px;
+  box-shadow: 0 0 10px 3px rgba(255, 255, 255, 0.5);
+}
+.player-container.one {
+  background-color: rgba(91, 194, 91, 0.637);
+}
+.player-container.two {
+  background-color: rgba(63, 138, 200, 0.783);
+}
+.player-container.three {
+  background-color: rgba(206, 32, 32, 0.758);
+}
+.player-container.four {
+  background-color: rgba(215, 205, 30, 0.793);
+}
+.players-info h2 {
+  color: aliceblue;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+.players-info h3 {
+  /* color: rgb(17, 48, 75); */
+  color: #070f2b;
+  color: aliceblue;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-weight: 200;
+}
+.players-info p {
+  color: aliceblue;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-bottom: 10px;
+}
+
+/* Styles to differ mosters for each player on the board */
+.cell.player1-monster {
+  background-color: rgba(91, 194, 91, 0.637);
+}
+.cell.player2-monster {
+  background-color: rgba(63, 138, 200, 0.783);
+}
+.cell.player3-monster {
+  background-color: rgba(206, 32, 32, 0.758);
+}
+.cell.player4-monster {
+  background-color: rgba(215, 205, 30, 0.793);
+}
+
+/* Style for submit turn button  */
+#submit-turn {
+  background-color: rgb(255, 112, 51);
+  color: rgb(255, 255, 255);
+  padding: 4.5px 3px;
+  border-radius: 3px;
+  border: 1px solid rgb(255, 255, 255);
+  width: 100%;
+  margin: 0;
+  margin-bottom: 10px;
+  font-size: 1.2rem;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  font-family: 'Special Elite', system-ui;
+}
+
+#submit-turn:hover {
+  background-color: rgb(255, 77, 0);
+  cursor: pointer;
+  transform: scale(1.05);
+}
+
+#submit-turn.disabled {
+  background-color: rgb(128, 128, 128);
+  color: rgb(255, 255, 255);
+  cursor: not-allowed;
+  transform: scale(1);
+}
